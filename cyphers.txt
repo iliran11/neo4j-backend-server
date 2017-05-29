@@ -1,0 +1,33 @@
+// creating a new user
+
+CREATE (user:User {name:"Liran",funds:100,turn:2})
+RETURN user
+
+// creating a stock Metadata
+
+CREATE (stockMeta:StockMeta {name:"Google"})
+RETURN stock
+
+// change the turn of the game
+
+MATCH (you:User {name:"Liran"})
+SET you.turn = 2
+RETURN you 
+
+// creating a stock instance and a relationship to User and a relationship to meta
+
+MATCH  (you:User {name:"Liran"})
+MATCH (google:StockMeta {name:"Google"})
+CREATE (you)-[purchased:Purchased]->(instanceStock:InstanceStock {
+    purchaseTurn:3,
+    quantity:10,
+    price:98
+}) -[meta:Meta]-> (google)
+RETURN you,purchased,instanceStock,meta,google
+
+
+// find meta data stock
+
+MATCH (stock:StockMeta {name:"Google"}) return stock
+
+
