@@ -12,7 +12,6 @@ function searchStock(queryString) {
         )
         .then(result => {
             session.close();
-            console.log(result);
         })
 
 }
