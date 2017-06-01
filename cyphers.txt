@@ -6,7 +6,7 @@ RETURN user
 // creating a stock Metadata
 
 CREATE (stockMeta:StockMeta {name:"Google"})
-RETURN stock
+RETURN stockMeta
 
 // change the turn of the game
 
@@ -29,5 +29,10 @@ RETURN you,purchased,instanceStock,meta,google
 // find meta data stock
 
 MATCH (stock:StockMeta {name:"Google"}) return stock
+
+// find all meta data stocks
+
+MATCH (stockMeta:StockMeta)
+RETURN stockMeta
 
 

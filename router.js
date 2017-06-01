@@ -1,7 +1,7 @@
-var index = require('./controllers/index.js');
+var getStock = require('./controllers/get-stock.js');
+var getStocks = require('./controllers/get-stocks.js');
 
 module.exports = function (app) {
-    app.get('/helo', function (req, res) {
-        res.send('at last!');
-    });
+    app.get('/get-stock', getStock);
+    app.get('/get-stocks', getStocks);
 }

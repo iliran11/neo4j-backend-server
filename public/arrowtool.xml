@@ -1,0 +1,15 @@
+<ul class="graph-diagram-markup" data-internal-scale="2.27" data-external-scale="1">
+  <li class="node" data-node-id="3" data-x="55.506607929515404" data-y="-23.78854625550666">
+    <span class="caption">User</span><dl class="properties"><dt>Name</dt><dd>Liran</dd><dt>Funds</dt><dd>93</dd><dt>Turn</dt><dd>12</dd></dl></li>
+  <li class="node" data-node-id="4" data-x="-123.27985452660343" data-y="76.54468015427116">
+    <span class="caption">Stock</span><dl class="properties"><dt>PurchaseTurn</dt><dd>3</dd><dt>Quantity</dt><dd>10</dd></dl></li>
+  <li class="node" data-node-id="6" data-x="-326.7682608045673" data-y="-23.78854625550666">
+    <span class="caption">Stock Meta</span><dl class="properties"><dt>name</dt><dd>Google</dd></dl></li>
+  <li class="relationship" data-from="3" data-to="4">
+    <span class="type">Purchased</span>
+  </li>
+  <li class="relationship" data-from="4" data-to="6">
+    <span class="type">Meta</span>
+  </li>
+  <li class="relationship" data-from="4" data-to="4"></li>
+</ul>
