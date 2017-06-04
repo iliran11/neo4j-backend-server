@@ -5,5 +5,5 @@ var updateStock = require('./controllers/update-stock.js');
 module.exports = function (app) {
     app.get('/get-stock', getStock);
     app.get('/get-stocks', getStocks);
-    app.get('/update-stock', updateStock)
+    app.post('/update-stock', updateStock)
 }
