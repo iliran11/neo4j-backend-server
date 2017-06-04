@@ -14,7 +14,7 @@ MATCH (you:User {name:"Liran"})
 SET you.turn = 2
 RETURN you 
 
-// creating a stock instance and a relationship to User and a relationship to meta
+// create a stock instance and a relationship to User and a relationship to meta
 
 MATCH  (you:User {name:"Liran"})
 MATCH (google:StockMeta {name:"Google"})
@@ -24,6 +24,14 @@ CREATE (you)-[purchased:Purchased]->(instanceStock:InstanceStock {
     price:98
 }) -[meta:Meta]-> (google)
 RETURN you,purchased,instanceStock,meta,google
+
+// Update matched instanceStock
+
+MATCH  (you:User {name:"Liran"})
+MATCH (google:StockMeta {name:"Google"})
+MATCH (you)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (google)
+SET instanceStock.quantity=10;
+RETURN instanceStock
 
 
 // find meta data stock
@@ -35,4 +43,21 @@ MATCH (stock:StockMeta {name:"Google"}) return stock
 MATCH (stockMeta:StockMeta)
 RETURN stockMeta
 
+//delete all meta relationships
 
+match (instanceStock:InstanceStock)-[meta:Meta]->(stockMeta:StockMeta) DELETE meta
+
+// delete all purchased relationships
+
+match (user:User)-[purchased:Purchased]-> (instanceStock:InstanceStock) DELETE purchased
+
+//delete all instance-stocks
+
+MATCH (instanceStock:InstanceStock) DELETE instanceStock
+
+// is there a stock meta connected to User
+
+MATCH  (you:User {name:"Liran"})
+MATCH (google:StockMeta {name:"Google"})
+MATCH (you)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (google)
+RETURN count(*)

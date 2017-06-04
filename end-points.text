@@ -1,0 +1,27 @@
+// does user already own the stock?
+    client request: {
+        user: "liran"
+        stockName: "Google"
+    }
+// create a new instanceStock and relate to the user
+    {
+        user:"liran",
+        stockName:"google"
+        quantity:"8"
+    }
+
+// update existing instanceStock
+
+    {
+        user:"liran"
+        stockName:"google"
+        newQuantity:"9"
+    }
+
+// change the turn of the game.
+
+{
+    user:"liran",
+    turn:3
+}
+
