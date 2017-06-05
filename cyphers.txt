@@ -17,13 +17,9 @@ RETURN you
 // create a stock instance and a relationship to User and a relationship to meta
 
 MATCH  (you:User {name:"Liran"})
-MATCH (google:StockMeta {name:"Google"})
-CREATE (you)-[purchased:Purchased]->(instanceStock:InstanceStock {
-    purchaseTurn:3,
-    quantity:10,
-    price:98
-}) -[meta:Meta]-> (google)
-RETURN you,purchased,instanceStock,meta,google
+MATCH (stockMeta:StockMeta {name:"Google"})
+CREATE (you)-[purchased:Purchased]->(instanceStock:InstanceStock { quantity:10}) -[meta:Meta]-> (stockMeta)
+RETURN *
 
 // Update matched instanceStock
 

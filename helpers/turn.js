@@ -1,11 +1,7 @@
 var driver = require('../neo4jApi');
 
 module.exports = options => {
-    const query = `MATCH  (you:User {name:"${options.user}"})
-MATCH (stockMeta:StockMeta {name:"${options.stock}"})
-CREATE (you)-[purchased:Purchased]->(instanceStock:InstanceStock { quantity:${options.quantity}}) -[meta:Meta]-> (stockMeta)
-RETURN *`
-    console.log(query);
+    const query = `MATCH  (you:User {name:"${options.user}"}) SET you.turn=${options.turn} RETURN you`
     var session = driver.session();
     return new Promise(resolve => {
         session

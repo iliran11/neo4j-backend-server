@@ -1,10 +1,9 @@
 var isStockExist = require('../helpers/isStockExist');
 var updateStock = require('../helpers/update-stock');
-var createStock = require('../controllers/update-stock');
+var createStock = require('../helpers/create-stock');
 
 module.exports = (req, res) => {
     const { user, stock, quantity } = req.body;
-    const updateBody = { user, stock, quantity };
     isStockExist({ user, stock })
         .then(isExist => {
             if (isExist > 0) {
