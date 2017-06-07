@@ -6,13 +6,17 @@ module.exports = (req, res) => {
         .then(neoResponse => {
             const instanceMetaKey = 0;
             const metaStockKey = 1;
-            const result = neoResponse.records.map(currentRecord => {
-                console.log(currentRecord.length)
+            const portfolio = neoResponse.records.map(currentRecord => {
                 return {
                     name: currentRecord._fields[metaStockKey].properties.name,
                     quantity: currentRecord._fields[instanceMetaKey].properties.quantity.low
                 }
             })
+            const result = {
+                portfolio,
+                turn: neoResponse.records[0].get('you').properties.turn.low,
+                user: neoResponse.records[0].get('you').properties.name
+            }
             res.send(result);
         })
 }

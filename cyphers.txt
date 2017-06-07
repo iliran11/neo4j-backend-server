@@ -51,9 +51,18 @@ match (user:User)-[purchased:Purchased]-> (instanceStock:InstanceStock) DELETE p
 
 MATCH (instanceStock:InstanceStock) DELETE instanceStock
 
-// is there a stock meta connected to User
+// DELETE Pattern
+
+MATCH  (user:User {name:"Liran"})
+MATCH (stockMeta:StockMeta {name:"Google"})
+MATCH (user)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (stockMeta)
+DELETE purchased,instanceStock,meta(*)
+
+// Merge
 
 MATCH  (you:User {name:"Liran"})
-MATCH (google:StockMeta {name:"Google"})
-MATCH (you)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (google)
+MATCH (stockMeta:StockMeta {name:"BMW"})
+MERGE (you)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (stockMeta)
+ON MATCH SET instanceStock.quontity = 7
+ON CREATE SET instanceStock.quontity = 7
 RETURN count(*)

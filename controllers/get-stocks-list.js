@@ -4,17 +4,15 @@
  * ["Google","BMW"]
  */
 
-var driver = require('../neo4jApi.js');
-var Stock = require('../models/stock.js');
+const driver = require('../neo4jApi.js');
+const Stock = require('../models/stock.js');
 
-module.exports = function (req, res) {
-    var session = driver.session();
+module.exports = (req, res) => {
+    const session = driver.session();
     return session
-        .run(
-        'MATCH (stockMeta:StockMeta) RETURN stockMeta'
-        )
-        .then(function (result) {
-            records = result.records.map(function (record) {
+        .run('MATCH (stockMeta:StockMeta) RETURN stockMeta')
+        .then((result) => {
+            records = result.records.map((record) => {
                 return new Stock(record.get('stockMeta')).name;
             });
             res.send(records);

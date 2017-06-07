@@ -1,10 +1,5 @@
 var driver = require('../neo4jApi.js');
-/**
- * options: {
- * user:"liran",
- * stock:"google"
- * }
- */
+
 module.exports = function (options) {
     var query = `MATCH  (you:User {name:"${options.user}"})
 MATCH (stockMeta:StockMeta {name:"${options.stock}"})

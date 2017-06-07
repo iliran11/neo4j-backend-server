@@ -5,7 +5,7 @@ module.exports = options => {
     const query = `MATCH  (you:User {name:"${options.user}"})
 MATCH (stockMeta:StockMeta)
 MATCH (you)-[purchased:Purchased]->(instanceStock:InstanceStock) - [meta:Meta] -> (stockMeta)
-RETURN instanceStock,stockMeta,meta`
+RETURN instanceStock,stockMeta,meta,you`
     const session = driver.session();
     return new Promise(resolve => {
         session
